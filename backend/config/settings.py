@@ -1,0 +1,354 @@
+import os
+from pathlib import Path
+from datetime import timedelta
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-dev-secret-key-change-in-production')
+
+DEBUG = True
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'librium.onrender.com', 'librium-web.netlify.app']
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True  # development only
+
+# Frontend URLs
+FRONTEND_LOGIN_URL    = 'https://librium-web.netlify.app/login'
+FRONTEND_REGISTER_URL = 'https://librium-web.netlify.app/register'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8081",
+    "http://127.0.0.1:8081",
+    "https://librium.onrender.com",
+    "https://librium-web.netlify.app",
+    "http://localhost:19006",   # Expo web alternate port
+    "http://localhost:19000",   # Expo Go
+]
+
+
+# ─────────────────────────────────────────────
+# APPS
+# ─────────────────────────────────────────────
+
+INSTALLED_APPS = [
+    'jazzmin',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    # Third-party
+    'rest_framework',
+    'corsheaders',
+    'djoser',
+    'cloudinary',
+    'cloudinary_storage',
+    'anymail',
+    'django_filters',
+
+    # Local
+    'user',
+    'library',
+    'circulation',
+    'chat',
+]
+
+
+# ─────────────────────────────────────────────
+# MIDDLEWARE
+# ─────────────────────────────────────────────
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'config.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = 'config.wsgi.application'
+
+
+# ─────────────────────────────────────────────
+# DATABASE
+# ─────────────────────────────────────────────
+
+DATABASES = {
+    'default': {
+        'ENGINE':   'django.db.backends.postgresql',
+        'NAME':     os.environ.get('DB_NAME'),
+        'USER':     os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST':     os.environ.get('DB_HOST'),
+        'PORT':     os.environ.get('DB_PORT'),
+    }
+}
+
+
+# ─────────────────────────────────────────────
+# AUTH
+# ─────────────────────────────────────────────
+
+AUTH_USER_MODEL = 'user.User'
+
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
+
+
+# ─────────────────────────────────────────────
+# REST FRAMEWORK
+# ─────────────────────────────────────────────
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 25,
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+}
+
+
+# ─────────────────────────────────────────────
+# SIMPLE JWT
+# ─────────────────────────────────────────────
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES':     ('Bearer',),
+    'ACCESS_TOKEN_LIFETIME':  timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+
+# ─────────────────────────────────────────────
+# EMAIL
+# ─────────────────────────────────────────────
+
+EMAIL_BACKEND = 'anymail.backends.brevo.EmailBackend'
+
+ANYMAIL = {
+    "BREVO_API_KEY": os.environ.get("BREVO_API_KEY"),
+}
+
+EMAIL_TIMEOUT      = 60
+DEFAULT_FROM_EMAIL = 'lanzaderas.joeverlypearl04@gmail.com'
+
+DOMAIN    = os.environ.get('DOMAIN', 'librium.onrender.com')
+SITE_NAME = 'Librium Library'
+
+
+# ─────────────────────────────────────────────
+# DJOSER
+# ─────────────────────────────────────────────
+
+DJOSER = {
+    'LOGIN_FIELD':                 'email',
+    'USER_CREATE_PASSWORD_RETYPE': False,
+    'SEND_ACTIVATION_EMAIL':       True,
+    'ACTIVATION_URL':              'activate/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL':  'password/reset/confirm/{uid}/{token}',
+    'PROTOCOL':                    'https',
+
+    'SERIALIZERS': {
+        'user_create':  'user.serializers.UserCreateSerializer',
+        'user':         'user.serializers.UserSerializer',
+        'current_user': 'user.serializers.UserSerializer',
+    },
+
+    'EMAIL': {
+        'activation': 'user.emails.ActivationEmail',
+    },
+}
+
+
+# ─────────────────────────────────────────────
+# CLOUDINARY / MEDIA
+# ─────────────────────────────────────────────
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY':    os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    'PREFIX':     '',
+}
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
+
+MEDIA_URL  = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# ─────────────────────────────────────────────
+# STATIC / I18N / MISC
+# ─────────────────────────────────────────────
+
+STATIC_URL       = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT      = BASE_DIR / 'staticfiles'
+
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE     = 'Asia/Manila'
+USE_I18N      = True
+USE_TZ        = True
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ─────────────────────────────────────────────
+# JAZZMIN
+# ─────────────────────────────────────────────
+
+JAZZMIN_SETTINGS = {
+    # Branding
+    "site_title":    "Librium",
+    "site_header":   "Librium Library System",
+    "site_brand":    "Librium",
+    "site_logo":     None,
+    "login_logo":    None,
+    "site_icon":     None,
+    "welcome_sign":  "Welcome to Librium Admin",
+    "copyright":     "Librium University Library",
+
+    # Top navigation
+    "topmenu_links": [
+        {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "View Site",  "url": "/",           "new_window": True},
+    ],
+
+    # User menu (top-right)
+    "usermenu_links": [
+        {"name": "Support", "url": "#", "icon": "fas fa-circle-question"},
+    ],
+
+    # Sidebar
+    "show_sidebar":         True,
+    "navigation_expanded":  True,
+    "hide_apps":            [],
+    "hide_models":          [],
+
+    # Updated sidebar order to reflect new app structure
+    "order_with_respect_to": [
+        "auth",
+        "user",
+        "library.book",
+        "library.author",
+        "library.category",
+        "library.department",
+        "library.bookmark",
+        "circulation.semester",
+        "circulation.borrowrequest",
+        "circulation.loan",
+        "circulation.reservation",
+        "circulation.fine",
+        "chat.knowledgebase",
+        "chat.chatmessage",
+    ],
+
+    # Updated icons to reflect new app structure
+    "icons": {
+        "auth":                         "fas fa-users-cog",
+        "auth.group":                   "fas fa-layer-group",
+        "user.user":                    "fas fa-user",
+        "user.userprofile":             "fas fa-id-card",
+        "library.book":                 "fas fa-book",
+        "library.author":               "fas fa-pen-nib",
+        "library.category":             "fas fa-tags",
+        "library.department":           "fas fa-building-columns",
+        "library.bookmark":             "fas fa-heart",
+        "circulation.semester":         "fas fa-calendar-alt",
+        "circulation.borrowrequest":    "fas fa-hand-holding-heart",
+        "circulation.loan":             "fas fa-book-open",
+        "circulation.reservation":      "fas fa-bookmark",
+        "circulation.fine":             "fas fa-file-invoice-dollar",
+        "chat.knowledgebase":           "fas fa-database",
+        "chat.chatmessage":             "fas fa-comment-dots",
+    },
+    "default_icon_parents":  "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+
+    # UI tweaks
+    "related_modal_active":    True,
+    "custom_css":              "admin/css/librium.css",
+    "custom_js":               None,
+    "use_google_fonts_cdn":    True,
+    "show_ui_builder":         False,
+    "changeform_format":       "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user":  "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+    "language_chooser": False,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text":   False,
+    "brand_small_text":  False,
+    "brand_colour":      "navbar-dark",
+    "accent":            "accent-warning",
+    "navbar":            "navbar-dark",
+    "no_navbar_border":  True,
+    "navbar_fixed":      True,
+    "layout_boxed":      False,
+    "footer_fixed":      False,
+    "sidebar_fixed":     True,
+    "sidebar":           "sidebar-dark-warning",
+    "theme":             "cosmo",
+    "dark_mode_theme":   "darkly",
+    "button_classes": {
+        "primary":   "btn-primary",
+        "secondary": "btn-secondary",
+        "info":      "btn-info",
+        "warning":   "btn-warning",
+        "danger":    "btn-danger",
+        "success":   "btn-success",
+    },
+}
