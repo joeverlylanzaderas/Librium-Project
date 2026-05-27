@@ -17,8 +17,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True  # development only
 
 # Frontend URLs
-FRONTEND_LOGIN_URL    = 'https://librium-web.netlify.app/login'
-FRONTEND_REGISTER_URL = 'https://librium-web.netlify.app/register'
+FRONTEND_LOGIN_URL    = 'https://librium-project.netlify.app/login'
+FRONTEND_REGISTER_URL = 'https://librium-project.netlify.app/register'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
