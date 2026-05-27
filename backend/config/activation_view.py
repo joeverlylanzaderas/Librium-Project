@@ -10,8 +10,8 @@ from django.contrib.auth.tokens import default_token_generator
 User = get_user_model()
 
 # Get URLs from settings (so they can be configured per environment)
-FRONTEND_LOGIN_URL    = getattr(settings, 'FRONTEND_LOGIN_URL', 'https://librium-web.netlify.app/login')
-FRONTEND_REGISTER_URL = getattr(settings, 'FRONTEND_REGISTER_URL', 'https://librium-web.netlify.app/register')
+FRONTEND_LOGIN_URL    = getattr(settings, 'FRONTEND_LOGIN_URL', 'https://librium-project.netlify.app/login')
+FRONTEND_REGISTER_URL = getattr(settings, 'FRONTEND_REGISTER_URL', 'https://librium-project.netlify.app/register')
 
 class ActivateAccountView(View):
     def get(self, request, uid, token):
