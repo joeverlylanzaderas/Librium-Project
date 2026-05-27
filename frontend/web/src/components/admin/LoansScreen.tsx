@@ -145,7 +145,7 @@ export default function LoansScreen() {
       setIssueModalOpen(false)
       resetForm()
     },
-    onError: (error: any, variables, context) => {
+    onError: (error: any, _variables, context) => {
       if (context?.previousLoans) {
         queryClient.setQueryData(['loans'], context.previousLoans)
       }
@@ -182,7 +182,7 @@ export default function LoansScreen() {
       queryClient.invalidateQueries({ queryKey: ['dashboard'] })
       toast({ title: 'Success', description: 'Return request processed' })
     },
-    onError: (error: any, variables, context) => {
+    onError: (error: any, _variables, context) => {
       if (context?.previousLoans) {
         queryClient.setQueryData(['loans'], context.previousLoans)
       }

@@ -4,10 +4,9 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getReservations, fulfillReservation } from '@/services/api'
 import { useToast } from '@/hooks/useToast'
 import { extractData } from '@/hooks/useApiData'
-import type { Reservation } from '@shared/types/circulation'
 import { 
   CheckCircle, Clock, BookOpen, Archive, AlertCircle, 
-  Loader2, Calendar, User as UserIcon
+  Loader2, Calendar,
 } from 'lucide-react'
 import { format } from 'date-fns'
 

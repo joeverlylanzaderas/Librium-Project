@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getFines } from '@/services/api'
 import { extractData } from '@/hooks/useApiData'
 import type { Fine } from '@shared/types/circulation'
-import { DollarSign, CheckCircle, Loader2, Search, X } from 'lucide-react'
+import { DollarSign, Loader2, Search, X } from 'lucide-react'
 import { format } from 'date-fns'
 
 type FineWithDetails = Fine & {

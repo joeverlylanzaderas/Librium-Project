@@ -32,7 +32,7 @@ export default function MemberBookmarksScreen() {
       queryClient.invalidateQueries({ queryKey: ['bookmarks'] })
       toast({ title: 'Success', description: 'Bookmark removed' })
     },
-    onError: (error: any) => {
+    onError: () => {
       toast({ title: 'Error', description: 'Failed to remove bookmark', variant: 'destructive' })
     },
   })

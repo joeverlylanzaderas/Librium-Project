@@ -192,7 +192,7 @@ export default function BooksScreen() {
       toast({ title: 'Success', description: 'Book created successfully' })
       closeModal()
     },
-    onError: (error: any, variables, context) => {
+    onError: (error: any, _variables, context) => {
       if (context?.previousBooks) {
         queryClient.setQueryData(['books'], context.previousBooks)
       }
@@ -227,7 +227,7 @@ export default function BooksScreen() {
       toast({ title: 'Success', description: 'Book updated successfully' })
       closeModal()
     },
-    onError: (error: any, variables, context) => {
+    onError: (error: any, _variables, context) => {
       if (context?.previousBooks) {
         queryClient.setQueryData(['books'], context.previousBooks)
       }
@@ -259,7 +259,7 @@ export default function BooksScreen() {
       queryClient.invalidateQueries({ queryKey: ['dashboard'] })
       toast({ title: 'Success', description: 'Book deleted successfully' })
     },
-    onError: (error: any, variables, context) => {
+    onError: (error: any, _variables, context) => {
       if (context?.previousBooks) {
         queryClient.setQueryData(['books'], context.previousBooks)
       }

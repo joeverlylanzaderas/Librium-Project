@@ -7,7 +7,7 @@ import { extractData } from '@/hooks/useApiData'
 import type { Loan } from '@shared/types/circulation'
 import { 
   Search, X, CheckCircle, XCircle, 
-  Loader2, Calendar, User as UserIcon, BookOpen, Clock
+  Loader2, Calendar, User as UserIcon, Clock
 } from 'lucide-react'
 import { format } from 'date-fns'
 

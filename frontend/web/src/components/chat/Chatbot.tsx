@@ -1,7 +1,7 @@
 // frontend/web/src/components/chat/Chatbot.tsx
 import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Trash2, Send, BookOpen } from 'lucide-react'
-import { useAuthStore } from '@/store/auth.store'
+//import { useAuthStore } from '@/store/auth.store'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -10,7 +10,7 @@ interface Message {
 }
 
 export default function Chatbot() {
-  const { user } = useAuthStore()
+  //const { user } = useAuthStore()
   const [isOpen, setIsOpen] = useState(false)
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<Message[]>([])
