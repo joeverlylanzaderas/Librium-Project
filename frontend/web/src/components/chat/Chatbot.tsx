@@ -43,7 +43,7 @@ export default function Chatbot() {
 
   const loadChatHistory = async () => {
     try {
-      const response = await fetch('https://librium.onrender.com/api/library/chat/', {
+      const response = await fetch('https://librium-project.onrender.com/api/library/chat/', {
         credentials: 'include',
       })
       const data = await response.json()
@@ -69,7 +69,7 @@ export default function Chatbot() {
     setLoading(true)
 
     try {
-      const response = await fetch('https://librium.onrender.com/api/library/chat/', {
+      const response = await fetch('https://librium-project.onrender.com/api/library/chat/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
