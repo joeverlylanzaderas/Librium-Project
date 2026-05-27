@@ -11,7 +11,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-dev-secret-key-change-in-pro
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'librium.onrender.com', 'librium-web.netlify.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'librium-project.onrender.com', 'librium-web.netlify.app']
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True  # development only
@@ -25,7 +25,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:8081",
     "http://127.0.0.1:8081",
-    "https://librium.onrender.com",
+    "https://librium-project.onrender.com",
     "https://librium-web.netlify.app",
     "http://localhost:19006",   # Expo web alternate port
     "http://localhost:19000",   # Expo Go
@@ -173,7 +173,7 @@ ANYMAIL = {
 EMAIL_TIMEOUT      = 60
 DEFAULT_FROM_EMAIL = 'lanzaderas.joeverlypearl04@gmail.com'
 
-DOMAIN    = os.environ.get('DOMAIN', 'librium.onrender.com')
+DOMAIN    = os.environ.get('DOMAIN', 'librium-project.onrender.com')
 SITE_NAME = 'Librium Library'
 
 
