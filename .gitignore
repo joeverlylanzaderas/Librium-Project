@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Environments / Secrets
+.env
+.env.*
+!.env.example
+
+# Operating System junk
+.DS_Store
+Thumbs.db
+
+# Build outputs (just in case)
+dist/
+build/
+.expo/

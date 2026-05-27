@@ -1,0 +1,339 @@
+/* frontend/web/src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts as fallback, local fonts will be used if available ── */
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400;1,7..72,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Gloock&display=swap');
+
+/* ── Local Font Face Definitions ── */
+@font-face {
+  font-family: 'Literata';
+  src: url('./assets/fonts/Literata-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Literata';
+  src: url('./assets/fonts/Literata-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Literata';
+  src: url('./assets/fonts/Literata-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Literata';
+  src: url('./assets/fonts/Literata-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Literata';
+  src: url('./assets/fonts/Literata-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Literata';
+  src: url('./assets/fonts/Literata-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Literata';
+  src: url('./assets/fonts/Literata-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Literata';
+  src: url('./assets/fonts/Literata-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('./assets/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('./assets/fonts/LibreBaskerville-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('./assets/fonts/LibreBaskerville-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('./assets/fonts/LibreBaskerville-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('./assets/fonts/LibreBaskerville-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gloock';
+  src: url('./assets/fonts/Gloock-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  /* Base styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Literata', 'Literata Fallback', Georgia, serif;
+    background-color: #FBF5DD;
+    color: #2D1F10;
+    line-height: 1.6;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Literata', 'Literata Fallback', Georgia, serif;
+    color: #2D1F10;
+    line-height: 1.2;
+  }
+
+  h1 { font-size: 2rem; font-weight: 600; }
+  h2 { font-size: 1.5rem; font-weight: 600; }
+  h3 { font-size: 1.25rem; font-weight: 500; }
+  h4 { font-size: 1.1rem; font-weight: 500; }
+
+  p {
+    font-family: 'Libre Baskerville', 'Libre Baskerville Fallback', Georgia, serif;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: #2D1F10;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #F0F0F3; }
+  ::-webkit-scrollbar-thumb { background: #D9D3BC; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #60646C; }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid #F69D39;
+    outline-offset: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background: #F69D39;
+    color: #1F150C;
+  }
+}
+
+@layer components {
+  /* Auth page background */
+  .auth-bg {
+    min-height: 100vh;
+    background-image: url('/login-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .auth-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 8, 3, 0.62);
+  }
+
+  .auth-bg > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    background-color: #1F150C;
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    transition: width 0.2s ease;
+    z-index: 40;
+  }
+
+  /* Topbar */
+  .topbar {
+    background-color: #1F150C;
+    height: 56px;
+    border-bottom: 1px solid #412D15;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 260px;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    transition: left 0.2s ease;
+  }
+
+  /* Main content */
+  .main-content {
+    margin-left: 260px;
+    margin-top: 56px;
+    min-height: calc(100vh - 56px);
+    background-color: #FBF5DD;
+    padding: 2rem;
+  }
+
+  /* Cards */
+  .card {
+    background-color: #F0F0F3;
+    border: 1px solid #D9D3BC;
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-family: 'Literata', 'Literata Fallback', system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .badge-admin { background: #2E3135; color: #FFC85C; }
+  .badge-librarian { background: #412D15; color: #FFC85C; }
+  .badge-student { background: #FAEEDA; color: #854F0B; }
+  .badge-faculty { background: #E6F1FB; color: #185FA5; }
+  .badge-member { background: #EFE9CE; color: #2D1F10; }
+  .badge-active { background: #EAF3DE; color: #3B6D11; }
+  .badge-overdue { background: #FCEBEB; color: #A32D2D; }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid #D9D3BC;
+    margin: 1rem 0;
+  }
+}
+
+@layer utilities {
+  /* Custom shadows */
+  .shadow-card {
+    box-shadow: 0 2px 12px rgba(31, 21, 12, 0.08);
+  }
+  
+  .shadow-card-hover {
+    box-shadow: 0 8px 24px rgba(31, 21, 12, 0.12);
+  }
+  
+  .shadow-amber {
+    box-shadow: 0 0 0 3px rgba(246, 157, 57, 0.2);
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.25s ease forwards;
+  }
+  
+  .animate-spin-slow {
+    animation: spin 0.7s linear infinite;
+  }
+}
+
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+
+/* Add these keyframes to your index.css */
+@keyframes bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1.4s ease-in-out infinite;
+}
