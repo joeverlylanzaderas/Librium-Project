@@ -131,7 +131,7 @@ export default function MemberLoansScreen() {
     onSuccess: () => {
       toast({ title: 'Return Requested', description: 'A librarian will verify your return shortly.' })
     },
-    onError: (error, _variables, context) => {
+    onError: (_error, _variables, context) => {
       // Rollback on error
       if (context?.previousLoans) {
         queryClient.setQueryData(['loans'], context.previousLoans)
