@@ -26,7 +26,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8081",
     "http://127.0.0.1:8081",
     "https://librium-project.onrender.com",
-    "https://librium-web.netlify.app",
+    "https://librium-project.netlify.app",
     "http://localhost:19006",   # Expo web alternate port
     "http://localhost:19000",   # Expo Go
 ]

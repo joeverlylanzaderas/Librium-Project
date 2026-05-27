@@ -48,7 +48,7 @@ class ActivateAccountView(View):
         is_mobile = 'android' in user_agent or 'iphone' in user_agent or 'expo' in user_agent
 
         # For web users, send to Netlify login page
-        login_url_for_user = 'librium://activated' if is_mobile else FRONTEND_LOGIN_URL
+        login_url_for_user = 'librium-project://activated' if is_mobile else FRONTEND_LOGIN_URL
 
         return render(request, 'activation.html', {
             'success': True,
@@ -57,7 +57,7 @@ class ActivateAccountView(View):
             'uid': uid,
             'token': token,
             'is_mobile': is_mobile,
-            'app_link': 'librium://activated',
+            'app_link': 'librium-project://activated',
             'login_url': login_url_for_user,  # Mobile gets deep link, web gets Netlify URL
             'register_url': FRONTEND_REGISTER_URL,
         })
