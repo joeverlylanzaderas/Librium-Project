@@ -185,7 +185,7 @@ DJOSER = {
     'LOGIN_FIELD':                 'email',
     'USER_CREATE_PASSWORD_RETYPE': False,
     'SEND_ACTIVATION_EMAIL':       True,
-    'ACTIVATION_URL':              'activate/{uid}/{token}',
+    'ACTIVATION_URL':              'https://librium-project.netlify.app/activate/{uid}/{token}',
     'PASSWORD_RESET_CONFIRM_URL':  'password/reset/confirm/{uid}/{token}',
     'PROTOCOL':                    'https',
 
